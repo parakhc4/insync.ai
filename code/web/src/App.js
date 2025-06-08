@@ -5,6 +5,9 @@ import ParentDashboard from './pages/ParentDashboard';
 import CookDashboard from './pages/CookDashboard';
 import DriverDashboard from './pages/DriverDashboard';
 import Home from './pages/Home';
+// In src/index.js or App.js
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 
 function App() {
