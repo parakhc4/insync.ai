@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import './ActivityPlanner.css';
 
 function ActivityPlanner() {
     const [activity, setActivity] = useState("");
@@ -31,27 +32,24 @@ function ActivityPlanner() {
     };
 
     return (
-        <div>
+        <div className="activity-planner">
             <h2>Activity Planner</h2>
-            <form onSubmit={addActivity} style={{ marginBottom: '20px' }}>
+            <form onSubmit={addActivity}>
                 <input
                     type="text"
                     placeholder="Activity"
                     value={activity}
                     onChange={(e) => setActivity(e.target.value)}
-                    style={{ marginRight: '10px' }}
                 />
                 <input
                     type="date"
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
-                    style={{ marginRight: '10px' }}
                 />
                 <input
                     type="time"
                     value={time}
                     onChange={(e) => setTime(e.target.value)}
-                    style={{ marginRight: '10px' }}
                 />
                 <button type="submit">Add</button>
             </form>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./DashboardLayout.css";
 
 function DriverDashboard() {
   const [activities, setActivities] = useState([]);
@@ -15,7 +16,7 @@ function DriverDashboard() {
   }, []);
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div className="dashboard">
       <h2>Driver Dashboard</h2>
       <p>View child pickup/drop schedule here.</p>
       {activities.length > 0 ? (
