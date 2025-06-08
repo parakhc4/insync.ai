@@ -1,0 +1,35 @@
+.activity-planner {
+  margin-top: 20px;
+}
+
+.activity-planner form input,
+.activity-planner form button {
+  margin-right: 10px;
+  padding: 8px;
+  font-size: 1rem;
+}
+
+.activity-planner form button {
+  background-color: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.activity-planner form button:hover {
+  background-color: #155a9a;
+}
+
+.activity-planner ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.activity-planner li {
+  background: #f0f0f0;
+  margin: 8px 0;
+  padding: 8px 12px;
+  border-radius: 4px;
+}

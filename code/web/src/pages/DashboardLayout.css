@@ -1,0 +1,22 @@
+.dashboard {
+  padding: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+}
+
+.dashboard h2 {
+  margin-bottom: 16px;
+}
+
+.dashboard ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.dashboard li {
+  background: #f0f0f0;
+  margin: 8px 0;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
