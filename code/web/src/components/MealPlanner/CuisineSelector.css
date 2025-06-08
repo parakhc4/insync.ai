@@ -1,0 +1,24 @@
+.cuisine-card {
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.cuisine-card img {
+  width: 180px;
+  height: 120px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 3px solid transparent;
+}
+
+.cuisine-card.selected img {
+  border-color: #4caf50;
+  transform: scale(1.05);
+}
+
+.cuisine-name {
+  margin-top: 8px;
+  font-weight: bold;
+}

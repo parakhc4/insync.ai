@@ -1,7 +1,7 @@
 import React from "react";
-import MealPlanner from "../components/MealPlanner";
-import NutritionScanner from "../components/NutritionScanner";
-import ActivityPlanner from "../components/ActivityPlanner";
+import MealPlanner from "../components/MealPlanner/MealPlanner";
+import NutritionScanner from "../components/MealPlanner/NutritionScanner";
+import ActivityPlanner from "../components/ActivityPlanner/ActivityPlanner";
 
 function ParentDashboard() {
     return (
