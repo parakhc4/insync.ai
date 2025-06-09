@@ -1,0 +1,60 @@
+parent-dashboard {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+}
+
+.sidebar {
+  background-color: #1976d2;
+  color: #fff;
+  width: 60px;
+  transition: width 0.3s ease;
+  overflow: hidden;
+}
+
+.sidebar.open {
+  width: 200px;
+}
+
+.sidebar .toggle {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1.5rem;
+  padding: 16px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sidebar button.nav-btn {
+  background: none;
+  border: none;
+  color: inherit;
+  padding: 16px;
+  width: 100%;
+  text-align: left;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.sidebar button.nav-btn:hover {
+  background-color: #155a9a;
+  transform: translateX(4px);
+}
+
+.content {
+  flex: 1;
+  padding: 40px;
+  transition: margin-left 0.3s ease;
+}
+
+/* When sidebar is fixed width, offset content */
+.sidebar + .content {
+  margin-left: 60px;
+}
+
+.sidebar.open + .content {
+  margin-left: 200px;
+}
