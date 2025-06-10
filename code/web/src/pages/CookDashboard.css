@@ -1,0 +1,51 @@
+.cook-dashboard {
+  padding: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cook-note-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.cook-note-form input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+}
+
+.cook-note-form button {
+  padding: 10px 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cook-note-form button:hover {
+  background-color: #45a045;
+}
+
+.cook-notes-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.cook-notes-list li {
+  background: #f4f4f4;
+  padding: 10px;
+  border-left: 4px solid #4caf50;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.timestamp {
+  display: block;
+  font-size: 0.8em;
+  color: #666;
+  margin-top: 4px;
+}

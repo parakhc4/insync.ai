@@ -3,11 +3,11 @@ import Slider from 'react-slick';
 import './CuisineSelector.css'; // create this for custom styling
 
 const cuisines = [
-  { name: 'Indian', img: '/images/indian.jpg' },
-  { name: 'Italian', img: '/images/italian.jpg' },
-  { name: 'Chinese', img: '/images/chinese.jpg' },
-  { name: 'Mexican', img: '/images/mexican.jpg' },
-  { name: 'Thai', img: '/images/thai.jpg' },
+  { name: 'Indian', img: '/images/indian.jpeg' },
+  { name: 'Italian', img: '/images/italian.jpeg' },
+  { name: 'Chinese', img: '/images/chinese.jpeg' },
+  { name: 'Mexican', img: '/images/mexican.jpeg' },
+  { name: 'Thai', img: '/images/thai.jpeg' },
   // Add more if needed
 ];
 
@@ -32,21 +32,25 @@ function CuisineSelector({ onSelect }) {
   };
 
   return (
-    <div>
-      <h3>Select Cuisines</h3>
-      <Slider {...settings}>
-        {cuisines.map(({ name, img }) => (
-          <div
-            key={name}
-            className={`cuisine-card ${selected.includes(name) ? 'selected' : ''}`}
-            onClick={() => toggleCuisine(name)}
-          >
-            <img src={img} alt={name} />
-            <div className="cuisine-name">{name}</div>
+<div className="cuisine-selector-container">
+  <h3 className="section-title">🍽️ Select Preferred Cuisines</h3>
+  <Slider {...settings}>
+    {cuisines.map(({ name, img }) => (
+      <div
+        key={name}
+        className={`cuisine-card ${selected.includes(name) ? "selected" : ""}`}
+        onClick={() => toggleCuisine(name)}
+      >
+        <div className="cuisine-img-wrapper">
+          <img src={img} alt={name} />
+          <div className="cuisine-overlay">
+
           </div>
-        ))}
-      </Slider>
-    </div>
+        </div>
+      </div>
+    ))}
+  </Slider>
+</div>
   );
 }
 

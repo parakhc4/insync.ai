@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './NutritionScanner.css';
 
 function NutritionScanner() {
   const [image, setImage] = useState(null);
@@ -12,7 +13,7 @@ function NutritionScanner() {
     setLoading(true);
     const reader = new FileReader();
     reader.onloadend = async () => {
-      const base64 = reader.result.split(',')[1]; // remove the "data:image/..." prefix
+      const base64 = reader.result.split(',')[1];
 
       try {
         const res = await fetch('http://localhost:5001/analyze-image', {
@@ -40,21 +41,26 @@ function NutritionScanner() {
   };
 
   return (
-    <div style={{ marginTop: 20 }}>
+    <div className="nutrition-scanner">
+      <h2 className="section-title">📸 Nutrition Scanner</h2>
+      <label className="upload-box">
+      <img src="/images/upload.png" alt="Upload" className="upload-icon" />
       <input type="file" accept="image/*" onChange={handleFileChange} />
-      {image && <img src={image} alt="preview" width={200} style={{ marginTop: 10 }} />}
-      {loading && <p>Analyzing...</p>}
+    </label>
+
+
+      {image && (
+        <div className="preview">
+          <img src={image} alt="preview" className="preview-img" />
+        </div>
+      )}
+
+      {loading && <p className="loading-text">Analyzing...</p>}
+
       {result && (
-        <pre
-          style={{
-            background: '#eee',
-            padding: 10,
-            whiteSpace: 'pre-wrap',
-            marginTop: 10,
-          }}
-        >
-          {result}
-        </pre>
+        <div className="result-box">
+          <pre>{result}</pre>
+        </div>
       )}
     </div>
   );

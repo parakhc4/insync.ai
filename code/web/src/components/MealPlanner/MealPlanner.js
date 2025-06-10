@@ -13,7 +13,10 @@ function MealPlanner() {
 
   const handleGenerate = async () => {
     console.log("🍳 Button clicked");
-    if (selectedCuisines.length === 0){console.log("No cuisines selected");return;} ;
+    if (selectedCuisines.length === 0) {
+      console.log("No cuisines selected");
+      return;
+    }
 
     setLoading(true);
     try {
@@ -32,19 +35,26 @@ function MealPlanner() {
   };
 
   return (
-    <div>
+    <div className="meal-planner">
+      <h2 className="section-title">🍽️ Weekly Meal Planner</h2>
       <CuisineSelector onSelect={handleCuisineChange} />
-      <button
-        className="generate-btn"
-        onClick={handleGenerate}
-        disabled={loading}
-      >
-        {loading ? 'Generating...' : 'Generate Meal Plan'}
-      </button>
+
+      <div className="generate-section">
+        <button onClick={handleGenerate} disabled={loading}>
+          {loading ? 'Generating...' : 'Generate Meal Plan'}
+        </button>
+      </div>
 
       {mealPlan && (
-        <div className="meal-plan">
-          {JSON.stringify(mealPlan, null, 2)}
+        <div className="meal-grid">
+          {Object.entries(mealPlan).map(([day, meals]) => (
+            <div key={day} className="meal-card">
+              <h3>{day}</h3>
+              <p><strong>Breakfast:</strong> {meals.Breakfast}</p>
+              <p><strong>Lunch:</strong> {meals.Lunch}</p>
+              <p><strong>Dinner:</strong> {meals.Dinner}</p>
+            </div>
+          ))}
         </div>
       )}
     </div>

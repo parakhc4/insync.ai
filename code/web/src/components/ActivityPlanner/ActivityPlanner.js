@@ -31,37 +31,31 @@ function ActivityPlanner() {
         setTime("");
     };
 
-    return (
-        <div className="activity-planner">
-            <h2>Activity Planner</h2>
-            <form onSubmit={addActivity}>
-                <input
-                    type="text"
-                    placeholder="Activity"
-                    value={activity}
-                    onChange={(e) => setActivity(e.target.value)}
-                />
-                <input
-                    type="date"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                />
-                <input
-                    type="time"
-                    value={time}
-                    onChange={(e) => setTime(e.target.value)}
-                />
-                <button type="submit">Add</button>
-            </form>
-            {activities.length > 0 && (
-                <ul>
-                    {activities.map((a, idx) => (
-                        <li key={idx}>{`${a.activity} - ${a.date} ${a.time}`}</li>
-                    ))}
-                </ul>
-            )}
-        </div>
-    );
+return (
+  <div className="activity-planner">
+    <h2 className="section-title">📆 Activity Planner</h2>
+    <form onSubmit={addActivity} className="activity-form">
+      <input type="text" placeholder="Activity" value={activity} onChange={(e) => setActivity(e.target.value)} />
+      <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+      <input type="time" value={time} onChange={(e) => setTime(e.target.value)} />
+      <button type="submit">Add</button>
+    </form>
+
+    <div className="activity-list">
+      {activities.length > 0 ? (
+        activities.map((a, idx) => (
+          <div className="activity-item" key={idx}>
+            <strong>{a.activity}</strong>
+            <span>{a.date} at {a.time}</span>
+          </div>
+        ))
+      ) : (
+        <p className="placeholder">No activities scheduled yet.</p>
+      )}
+    </div>
+  </div>
+);
+
 }
 
 export default ActivityPlanner;

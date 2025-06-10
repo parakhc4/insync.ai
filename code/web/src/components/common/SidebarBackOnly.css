@@ -1,0 +1,26 @@
+/* src/components/Common/SidebarBackOnly.css */
+.sidebar-back {
+  width: 200px;
+  background-color: #f4f4f4;
+  padding-top: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #ddd;
+}
+
+.nav-btn.back-btn {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  margin: 0 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background 0.2s ease;
+}
+
+.nav-btn.back-btn:hover {
+  background: #e6f0ff;
+}

@@ -1,9 +1,10 @@
+
 .dashboard {
-  padding: 40px;
-  max-width: 900px;
-  margin: 0 auto;
-  font-family: 'Roboto', sans-serif;
+  display: flex;               /* Main fix */
+  flex-direction: row;         /* Sidebar left, content right */
+  min-height: 100vh;
 }
+
 
 .dashboard h2 {
   margin-bottom: 16px;

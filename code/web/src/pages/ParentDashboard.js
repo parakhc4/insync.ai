@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaUtensils, FaCamera, FaCalendarAlt, FaArrowLeft, FaBars } from "react-icons/fa";
 
@@ -13,6 +13,8 @@ function ParentDashboard() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(true);
   const [view, setView] = useState("meal");
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState("");
 
   const renderContent = () => {
     switch (view) {
@@ -25,8 +27,41 @@ function ParentDashboard() {
     }
   };
 
+  // 🔔 Notification logic (driver accepted)
+  useEffect(() => {
+    const saved = localStorage.getItem("activities");
+    if (!saved) return;
+
+    try {
+      const parsed = JSON.parse(saved);
+      const updated = [...parsed];
+      const acceptedUnnotified = updated.find((a) => a.accepted && !a.notified);
+
+      if (acceptedUnnotified) {
+        setNotificationMessage(`Driver accepted: "${acceptedUnnotified.activity}"`);
+        setShowNotification(true);
+
+        setTimeout(() => {
+          setShowNotification(false);
+        }, 3000);
+
+        acceptedUnnotified.notified = true;
+        localStorage.setItem("activities", JSON.stringify(updated));
+      }
+    } catch (err) {
+      console.error("Failed to parse activities");
+    }
+  }, []);
+
   return (
     <div className="parent-dashboard">
+      {/* 🔔 Notification */}
+      {showNotification && (
+        <div className="parent-notification">
+          {notificationMessage}
+        </div>
+      )}
+
       <div className={`sidebar ${open ? "open" : "collapsed"}`}>
         <div className="top-bar">
           <button className="back-btn" onClick={() => navigate("/")}>
