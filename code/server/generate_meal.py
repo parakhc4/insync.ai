@@ -9,7 +9,7 @@ import os
 load_dotenv()
 MONSTER_API_KEY = os.getenv("MONSTER_API_KEY")
 
-LLM_NAME = "Meta-Llama" 
+LLM_NAME = "Meta-Llama"
 MONSTER_MODEL_MAP = {
     "Google-Gemma": "google/gemma-2-9b-it",
     "Mistral": "mistralai/Mistral-7B-Instruct-v0.2",
