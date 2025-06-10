@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { FaArrowLeft, FaListUl } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import "./DashboardLayout.css";
-import SidebarBackOnly from "../components/common/SidebarBackOnly";
 import "./CookDashboard.css";
 
 function CookDashboard() {
   const [note, setNote] = useState("");
   const [notes, setNotes] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const saved = localStorage.getItem("cookNotes");
@@ -32,9 +34,22 @@ function CookDashboard() {
 
   return (
     <div className="dashboard">
-      <SidebarBackOnly />
-      <div className="cook-dashboard">
-        <h2>Cook's Notes</h2>
+      <div className={`sidebar open`}>
+        <div className="top-bar">
+          <button className="back-btn" onClick={() => navigate("/")}>
+            <FaArrowLeft />
+          </button>
+        </div>
+        <div className="nav-section">
+          <button className="nav-btn" disabled>
+            <FaListUl />
+            Cook View
+          </button>
+        </div>
+      </div>
+
+      <div className="dashboard-content-box cook-dashboard">
+        <h2>🍳 Cook's Notes</h2>
         <p>Add any kitchen updates or requests for the parent here.</p>
 
         <form onSubmit={addNote} className="cook-note-form">

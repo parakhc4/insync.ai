@@ -19,14 +19,20 @@ function DriverDashboard() {
       }
     }
   }, []);
+const toggleAccepted = (idx) => {
+  const updated = [...activities];
+  const newAccepted = !updated[idx].accepted;
 
-  const toggleAccepted = (idx) => {
-    const updated = [...activities];
-    updated[idx].accepted = !updated[idx].accepted;
-    updated[idx].notified = false;
-    setActivities(updated);
-    localStorage.setItem("activities", JSON.stringify(updated));
-  };
+  updated[idx].accepted = newAccepted;
+  updated[idx].notified = !newAccepted ? false : false; // always set false when (re-)accepted
+  setActivities(updated);
+  localStorage.setItem("activities", JSON.stringify(updated));
+
+  if (newAccepted) {
+    const acceptedEvent = updated[idx];
+    localStorage.setItem("driverAcceptedActivity", JSON.stringify(acceptedEvent));
+  }
+};
 
   return (
     <div className="driver-dashboard-wrapper">
@@ -48,7 +54,7 @@ function DriverDashboard() {
       </div>
 
       <div className="driver-dashboard">
-        <h2 className="section-title">🚗 Driver Dashboard</h2>
+        <h2 className="section-title">Driver Dashboard</h2>
         <p className="description">Tap to accept assigned activities</p>
 
         {activities.length > 0 ? (

@@ -1,8 +1,12 @@
+/* Remove: justify-content: center; height: 100vh; */
 .cook-dashboard {
   padding: 2rem;
   max-width: 600px;
-  margin: 0 auto;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
 }
+
 
 .cook-note-form {
   display: flex;

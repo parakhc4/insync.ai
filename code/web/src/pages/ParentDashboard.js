@@ -14,6 +14,20 @@ function ParentDashboard() {
   const [showNoteBanner, setShowNoteBanner] = useState(false);
   const navigate = useNavigate();
 
+useEffect(() => {
+  const acceptedActivity = localStorage.getItem("driverAcceptedActivity");
+  if (acceptedActivity) {
+    const event = JSON.parse(acceptedActivity);
+    const note = `Driver accepted: ${event.activity} on ${event.date} at ${event.time}`;
+    setLatestNote({ text: note });
+    setShowNoteBanner(true);
+    setTimeout(() => {
+      setShowNoteBanner(false);
+      localStorage.removeItem("driverAcceptedActivity");
+    }, 5000);
+  }
+}, []);
+
   useEffect(() => {
     const saved = localStorage.getItem("cookNotes");
     if (saved) {
@@ -47,7 +61,7 @@ function ParentDashboard() {
     <>
       {showNoteBanner && latestNote && (
         <div className="cook-note-banner">
-          📝 Cook says: <strong>{latestNote.text}</strong>
+          📝 <strong>{latestNote.text}</strong>
         </div>
       )}
 
