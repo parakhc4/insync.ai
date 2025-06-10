@@ -19,20 +19,21 @@ function DriverDashboard() {
       }
     }
   }, []);
-const toggleAccepted = (idx) => {
-  const updated = [...activities];
-  const newAccepted = !updated[idx].accepted;
 
-  updated[idx].accepted = newAccepted;
-  updated[idx].notified = !newAccepted ? false : false; // always set false when (re-)accepted
-  setActivities(updated);
-  localStorage.setItem("activities", JSON.stringify(updated));
+  const toggleAccepted = (idx) => {
+    const updated = [...activities];
+    const newAccepted = !updated[idx].accepted;
 
-  if (newAccepted) {
-    const acceptedEvent = updated[idx];
-    localStorage.setItem("driverAcceptedActivity", JSON.stringify(acceptedEvent));
-  }
-};
+    updated[idx].accepted = newAccepted;
+    updated[idx].notified = !newAccepted ? false : false; // reset on toggle
+    setActivities(updated);
+    localStorage.setItem("activities", JSON.stringify(updated));
+
+    if (newAccepted) {
+      const acceptedEvent = updated[idx];
+      localStorage.setItem("driverAcceptedActivity", JSON.stringify(acceptedEvent));
+    }
+  };
 
   return (
     <div className="driver-dashboard-wrapper">
@@ -53,8 +54,8 @@ const toggleAccepted = (idx) => {
         </div>
       </div>
 
-      <div className="driver-dashboard">
-        <h2 className="section-title">Driver Dashboard</h2>
+      <div className="dashboard-content-box driver-dashboard">
+        <h2 className="section-title">🚗 Driver Dashboard</h2>
         <p className="description">Tap to accept assigned activities</p>
 
         {activities.length > 0 ? (
