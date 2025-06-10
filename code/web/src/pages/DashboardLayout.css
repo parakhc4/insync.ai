@@ -1,10 +1,8 @@
-
 .dashboard {
-  display: flex;               /* Main fix */
-  flex-direction: row;         /* Sidebar left, content right */
+  display: flex;
+  flex-direction: row;
   min-height: 100vh;
 }
-
 
 .dashboard h2 {
   margin-bottom: 16px;

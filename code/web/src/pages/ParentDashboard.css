@@ -16,7 +16,7 @@
 }
 
 .sidebar.collapsed {
-  width: 70px;
+  width: 80px;
 }
 
 .top-bar {
@@ -55,7 +55,6 @@
   transition: background-color 0.2s;
 }
 
-.nav-btn.active,
 .nav-btn:hover {
   background-color: #e0e7ff;
 }
@@ -66,27 +65,28 @@
   overflow-y: auto;
 }
 
-.parent-notification {
+.cook-note-banner {
   position: fixed;
   top: 20px;
   right: 20px;
-  background-color: #4caf50;
-  color: white;
-  padding: 12px 20px;
+  background-color: #fffae6;
+  color: #333;
+  padding: 12px 18px;
+  border: 1px solid #ffe58f;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  animation: fadeInSlide 0.3s ease-in-out;
   font-weight: 500;
-  z-index: 999;
-  animation: fadeSlideIn 0.3s ease-out;
 }
 
-@keyframes fadeSlideIn {
+@keyframes fadeInSlide {
   from {
     opacity: 0;
-    transform: translateY(-20%);
+    transform: translateY(-10px);
   }
   to {
     opacity: 1;
-    transform: translateY(0%);
+    transform: translateY(0);
   }
 }

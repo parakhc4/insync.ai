@@ -1,10 +1,11 @@
 # server/generate_meal.py
 import sys
 import json
-from openai import OpenAI
 import time
-from dotenv import load_dotenv
+import re
 import os
+from openai import OpenAI
+from dotenv import load_dotenv
 
 load_dotenv()
 MONSTER_API_KEY = os.getenv("MONSTER_API_KEY")
@@ -16,6 +17,16 @@ MONSTER_MODEL_MAP = {
     "Microsoft-Phi": "microsoft/Phi-3-mini-4k-instruct",
     "Meta-Llama": "meta-llama/Meta-Llama-3.1-8B-Instruct",
 }
+
+def extract_json_block(text):
+    match = re.search(r"```json\s*(\{.*?\})\s*```", text, re.DOTALL)
+    if match:
+        try:
+            json.loads(match.group(1))
+            return match.group(1)
+        except json.JSONDecodeError:
+            return None
+    return None
 
 def setup_monster_api():
     return OpenAI(
@@ -45,19 +56,32 @@ def call_monster_api(user_input, context, client, retries=3, wait_time=5):
     return "Could not generate a response."
 
 def main():
-    # Expect comma-separated cuisines from CLI
+    if len(sys.argv) < 2:
+        print("❌ Usage: python3 generate_meal.py \"Indian,Chinese\"", file=sys.stderr)
+        sys.exit(1)
+
     cuisines = sys.argv[1].split(",")
-    prompt = f"""Generate a weekly meal plan with Breakfast, Lunch, and Dinner for 7 days using the following cuisines: {', '.join(cuisines)}."""
+    prompt = (
+        f"You are a helpful assistant that creates simple, balanced weekly meal plans."
+        f" Generate a meal plan in JSON format only — no explanations. Include keys for each day: "
+        f"Monday through Sunday, and for each day include 'Breakfast', 'Lunch', and 'Dinner'. "
+        f"The meals should reflect these cuisines: {', '.join(cuisines)}."
+    )
 
-    context = "You are a helpful assistant that creates balanced and realistic meal plans."
     client = setup_monster_api()
-    result = call_monster_api(prompt, context, client)
+    result = call_monster_api(prompt, context="", client=client)
 
-    try:
-        json_output = json.loads(result)
-        print(json.dumps(json_output))  # Pipe this as stdout for Node.js
-    except:
-        print(json.dumps({ "error": "Invalid JSON response from LLM", "raw": result }))
+    print("🧠 Raw LLM Response:\n", result)
+
+    cleaned_json = extract_json_block(result)
+    if cleaned_json:
+        print(cleaned_json)
+    else:
+        try:
+            json_output = json.loads(result)
+            print(json.dumps(json_output))
+        except:
+            print(json.dumps({ "error": "Invalid JSON response from LLM", "raw": result }))
 
 if __name__ == "__main__":
     main()

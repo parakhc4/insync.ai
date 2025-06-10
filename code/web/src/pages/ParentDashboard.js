@@ -1,20 +1,36 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { FaUtensils, FaCamera, FaCalendarAlt, FaArrowLeft, FaBars } from "react-icons/fa";
-
 import MealPlanner from "../components/MealPlanner/MealPlanner";
 import NutritionScanner from "../components/MealPlanner/NutritionScanner";
 import ActivityPlanner from "../components/ActivityPlanner/ActivityPlanner";
-
-import "./ParentDashboard.css";
+import { FaUtensils, FaCamera, FaCalendarAlt, FaArrowLeft } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import "./DashboardLayout.css";
+import "./ParentDashboard.css";
 
 function ParentDashboard() {
-  const navigate = useNavigate();
   const [open, setOpen] = useState(true);
   const [view, setView] = useState("meal");
-  const [showNotification, setShowNotification] = useState(false);
-  const [notificationMessage, setNotificationMessage] = useState("");
+  const [latestNote, setLatestNote] = useState(null);
+  const [showNoteBanner, setShowNoteBanner] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const saved = localStorage.getItem("cookNotes");
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        const last = parsed[parsed.length - 1];
+        if (last && last.text !== localStorage.getItem("lastSeenNote")) {
+          setLatestNote(last);
+          setShowNoteBanner(true);
+          localStorage.setItem("lastSeenNote", last.text);
+          setTimeout(() => setShowNoteBanner(false), 5000);
+        }
+      } catch {
+        console.error("Couldn't parse cook notes");
+      }
+    }
+  }, []);
 
   const renderContent = () => {
     switch (view) {
@@ -27,66 +43,39 @@ function ParentDashboard() {
     }
   };
 
-  // 🔔 Notification logic (driver accepted)
-  useEffect(() => {
-    const saved = localStorage.getItem("activities");
-    if (!saved) return;
-
-    try {
-      const parsed = JSON.parse(saved);
-      const updated = [...parsed];
-      const acceptedUnnotified = updated.find((a) => a.accepted && !a.notified);
-
-      if (acceptedUnnotified) {
-        setNotificationMessage(`Driver accepted: "${acceptedUnnotified.activity}"`);
-        setShowNotification(true);
-
-        setTimeout(() => {
-          setShowNotification(false);
-        }, 3000);
-
-        acceptedUnnotified.notified = true;
-        localStorage.setItem("activities", JSON.stringify(updated));
-      }
-    } catch (err) {
-      console.error("Failed to parse activities");
-    }
-  }, []);
-
   return (
-    <div className="parent-dashboard">
-      {/* 🔔 Notification */}
-      {showNotification && (
-        <div className="parent-notification">
-          {notificationMessage}
+    <>
+      {showNoteBanner && latestNote && (
+        <div className="cook-note-banner">
+          📝 Cook says: <strong>{latestNote.text}</strong>
         </div>
       )}
 
-      <div className={`sidebar ${open ? "open" : "collapsed"}`}>
-        <div className="top-bar">
-          <button className="back-btn" onClick={() => navigate("/")}>
-            <FaArrowLeft /> {!open ? "" : "Back"}
-          </button>
-          <button className="toggle-btn" onClick={() => setOpen(!open)}>
-            <FaBars />
-          </button>
+      <div className="parent-dashboard">
+        <div className={`sidebar ${open ? "open" : "collapsed"}`}>
+          <div className="top-bar">
+            <button className="back-btn" onClick={() => navigate("/")}>
+              <FaArrowLeft />
+            </button>
+            <button className="toggle-btn" onClick={() => setOpen(!open)}>
+              ☰
+            </button>
+          </div>
+          <div className="nav-section">
+            <button className="nav-btn" onClick={() => setView("meal")}>
+              <FaUtensils /> {open && "Meal Planner"}
+            </button>
+            <button className="nav-btn" onClick={() => setView("nutrition")}>
+              <FaCamera /> {open && "Nutrition Scanner"}
+            </button>
+            <button className="nav-btn" onClick={() => setView("activity")}>
+              <FaCalendarAlt /> {open && "Activity Planner"}
+            </button>
+          </div>
         </div>
-
-        <div className="nav-section">
-          <button className={`nav-btn ${view === "meal" ? "active" : ""}`} onClick={() => setView("meal")}>
-            <FaUtensils /> {!open ? "" : "Meal Planner"}
-          </button>
-          <button className={`nav-btn ${view === "nutrition" ? "active" : ""}`} onClick={() => setView("nutrition")}>
-            <FaCamera /> {!open ? "" : "Nutrition Scanner"}
-          </button>
-          <button className={`nav-btn ${view === "activity" ? "active" : ""}`} onClick={() => setView("activity")}>
-            <FaCalendarAlt /> {!open ? "" : "Activity Planner"}
-          </button>
-        </div>
+        <div className="content">{renderContent()}</div>
       </div>
-
-      <div className="content">{renderContent()}</div>
-    </div>
+    </>
   );
 }
 
