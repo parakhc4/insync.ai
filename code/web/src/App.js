@@ -12,7 +12,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/insync.ai">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/parent" element={<ParentDashboard />} />
