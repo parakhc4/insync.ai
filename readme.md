@@ -53,6 +53,7 @@ cd code/server
 npm install
 # Create a .env file
 echo "MONSTER_API_KEY=your_api_key_here" > .env
+echo "OPENAI_API_KEY=your_api_key_here" > .env
 # Run your backend
 node index.js
 ```
