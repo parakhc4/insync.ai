@@ -50,7 +50,6 @@ cd inSync.ai
 
 ```bash
 cd code/server
-npm install
 # Create a .env file
 echo "MONSTER_API_KEY=your_api_key_here" > .env
 echo "OPENAI_API_KEY=your_api_key_here" > .env
@@ -75,8 +74,8 @@ This starts the app at http://localhost:3000
 # 🔐 API Keys
 Add your MonsterAPI key to code/server/.env:
 
-ini
-Copy
-Edit
-MONSTER_API_KEY=sk-xxxxxx
+ini<br>
+Copy<br>
+Edit<br>
+MONSTER_API_KEY=sk-xxxxxx<br>
 Do not commit this key. Use .env.example as reference.
