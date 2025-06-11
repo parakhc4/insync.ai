@@ -28,11 +28,11 @@ A role-based household assistant to help families coordinate meal planning, nutr
 
 ## 🧩 Project Structure
 
-inSync.ai/
-├── code/
-│ ├── server/ # Python + Node backend (MonsterAPI and image handling)
-│ └── web/ # React frontend (UI for all dashboards)
-└── README.md
+inSync.ai/<br/>
+├── code/<br/>
+│ ├── server/ # Python + Node backend (MonsterAPI and image handling)<br/>
+│ └── web/ # React frontend (UI for all dashboards)<br/>
+└── README.md<br/>
 
 
 ---
