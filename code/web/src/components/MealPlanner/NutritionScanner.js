@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './NutritionScanner.css';
+import uploadIcon from '../../assets/images/upload.png';
+
 
 function NutritionScanner() {
   const [image, setImage] = useState(null);
@@ -44,7 +46,7 @@ function NutritionScanner() {
     <div className="nutrition-scanner">
       <h2 className="section-title">📸 Nutrition Scanner</h2>
       <label className="upload-box">
-      <img src="/images/upload.png" alt="Upload" className="upload-icon" />
+        <img src={uploadIcon} alt="Upload" className="upload-icon" />
       <input type="file" accept="image/*" onChange={handleFileChange} />
     </label>
 

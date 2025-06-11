@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import Slider from 'react-slick';
 import './CuisineSelector.css'; // create this for custom styling
+import indianImg from '../../assets/images/indian.jpeg';
+import italianImg from '../../assets/images/italian.jpeg';
+import chineseImg from '../../assets/images/chinese.jpeg';
+import mexicanImg from '../../assets/images/mexican.jpeg';
+import thaiImg from '../../assets/images/thai.jpeg';
 
 const cuisines = [
-  { name: 'Indian', img: '/images/indian.jpeg' },
-  { name: 'Italian', img: '/images/italian.jpeg' },
-  { name: 'Chinese', img: '/images/chinese.jpeg' },
-  { name: 'Mexican', img: '/images/mexican.jpeg' },
-  { name: 'Thai', img: '/images/thai.jpeg' },
-  // Add more if needed
+  { name: 'Indian', img: indianImg },
+  { name: 'Italian', img: italianImg },
+  { name: 'Chinese', img: chineseImg },
+  { name: 'Mexican', img: mexicanImg },
+  { name: 'Thai', img: thaiImg },
 ];
 
 function CuisineSelector({ onSelect }) {
@@ -33,7 +37,6 @@ function CuisineSelector({ onSelect }) {
 
   return (
 <div className="cuisine-selector-container">
-  <h3 className="section-title">🍽️ Select Preferred Cuisines</h3>
   <Slider {...settings}>
     {cuisines.map(({ name, img }) => (
       <div
