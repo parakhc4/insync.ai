@@ -3,7 +3,8 @@
 # InSync.AI 🏡 – Family Household Manager
 
 A role-based household assistant to help families coordinate meal planning, nutrition tracking, activity scheduling, and role-specific dashboards for parents, cooks, and drivers.
-www.parakhc4.github.io/insync.ai
+
+[www.parakhc4.github.io/insync.ai](https://parakhc4.github.io/insync.ai/)
 ---
 
 ## 🚀 Features
