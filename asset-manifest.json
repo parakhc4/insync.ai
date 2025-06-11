@@ -1,8 +1,13 @@
 {
   "files": {
     "main.css": "/insync.ai/static/css/main.9eb2b6bb.css",
-    "main.js": "/insync.ai/static/js/main.58d01963.js",
+    "main.js": "/insync.ai/static/js/main.bfb0884b.js",
     "static/js/453.c5eaf93b.chunk.js": "/insync.ai/static/js/453.c5eaf93b.chunk.js",
+    "static/media/chinese.jpeg": "/insync.ai/static/media/chinese.107c0e4742c50963c307.jpeg",
+    "static/media/mexican.jpeg": "/insync.ai/static/media/mexican.e5a593d973514e357238.jpeg",
+    "static/media/italian.jpeg": "/insync.ai/static/media/italian.559df1138c007b2a8346.jpeg",
+    "static/media/indian.jpeg": "/insync.ai/static/media/indian.9e89ee7682168034f24d.jpeg",
+    "static/media/thai.jpeg": "/insync.ai/static/media/thai.a12ec659f2d3aa776667.jpeg",
     "static/media/logo.svg": "/insync.ai/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "static/media/slick.svg": "/insync.ai/static/media/slick.2630a3e3eab21c607e21.svg",
     "static/media/slick.eot": "/insync.ai/static/media/slick.a4e97f5a2a64f0ab1323.eot",
@@ -10,11 +15,11 @@
     "static/media/slick.woff": "/insync.ai/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/insync.ai/index.html",
     "main.9eb2b6bb.css.map": "/insync.ai/static/css/main.9eb2b6bb.css.map",
-    "main.58d01963.js.map": "/insync.ai/static/js/main.58d01963.js.map",
+    "main.bfb0884b.js.map": "/insync.ai/static/js/main.bfb0884b.js.map",
     "453.c5eaf93b.chunk.js.map": "/insync.ai/static/js/453.c5eaf93b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9eb2b6bb.css",
-    "static/js/main.58d01963.js"
+    "static/js/main.bfb0884b.js"
   ]
 }
